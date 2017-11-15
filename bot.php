@@ -7,7 +7,7 @@ try {
     // $bot = new \TelegramBot\Api\Client('YOUR_BOT_API_TOKEN', 'YOUR_BOTAN_TRACKER_API_KEY');
 
 
-    $bot->command('hello', function ($message) use ($bot) {
+    $bot->command('hi', function ($message) use ($bot) {
         $bot->sendMessage($message->getChat()->getId(), "Hello world" );
     });
 
