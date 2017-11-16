@@ -19,8 +19,8 @@ try {
         );
         $bot->sendMessage($message->getChat()->getId(), "Search by:", null, false, null, $keyboard );
     });
-    $bot->callbackQuery(function ($message) use ($bot) {
-        $bot->sendMessage($message->getChat()->getId(), "You are on the current way:");
+    $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
+        $callbackQuery->answerCallbackQuery($callbackQuery->getId(), 'test');
     });
     $bot->run();
 
