@@ -15,7 +15,7 @@ try {
                          /search - search posts by categories
                          /admin - site administrator panel
                          <b>if you want get quote input random message to bot</b>';
-        $bot->sendMessage($message->getChat()->getId, $commandList);
+        $bot->sendMessage($message->getChat()->getId, $commandList, 'html');
     });
 
     $bot->command('search', function ($message) use ($bot) {
