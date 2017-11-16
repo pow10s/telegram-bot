@@ -3,39 +3,26 @@ require_once "vendor/autoload.php";
 
 try {
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
-
-    $bot->command('start', function ($message) use ($bot) {
-        $bot->sendMessage($message->getChat()->getId(), 'Hello, ' .$message->getChat()->getFirstName() .'. Thank`s for subscribing. Commands list: /help' );
-    });
-
-    $bot->command('search', function ($message) use ($bot) {
-        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
-            [
-                [
-                    ['text' => 'Categories', 'callback_data' => 'categories'],
-                    ['text' => 'Keyword', 'callback_data' => 'keyword'],
-                ]
-            ]
-        );
-        $bot->sendMessage($message->getChat()->getId(), "Search by:", null, false, null, $keyboard );
-    });
-
-    $bot->command('help', function ($message) use ($bot) {
-        $commandList = "Command list:
-                        /start - start work with bot
-                         /stop - stop work with bot
-                         /search - search posts by categories
-                         /admin - site administrator panel
-                         if you want get quote input random message
-                        ";
-        $bot->sendMessage($message->getChat()->getId(), $commandList);
-    });
-
-    $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
-        $bot->editMessageText($callbackQuery->getChat()->getId(),$callbackQuery->getId(), 'test');
+    $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot) {
+        /* @var \TelegramBot\Api\BotApi $bot */
+        $html = file_get_contents('http://stavklass.ru/images/search?utf8=✓&image[text]=' . $inlineQuery->getQuery());
+        $doc = new DOMDocument();
+        $doc->loadHTML($html);
+        $xpath = new DOMXPath($doc);
+        $img = $xpath->query('//div[@class="image-content"]/a[@class="image"]/img');
+        $result = [];
+        for ($i = 0; $i < $img->length; $i++) {
+            /* @var \DOMNodeList $img */
+            $node = $img->item($i);
+            $url = $node->getAttribute('src');
+            list($width, $height) = getimagesize($url);
+            $result[] = new \TelegramBot\Api\Types\Inline\InlineQueryResultPhoto(
+                $url, $url, $url, 'image/jpeg', $width, $height
+            );
+        }
+        $bot->answerInlineQuery($inlineQuery->getId(), $result, 0);
     });
     $bot->run();
-
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
 }
