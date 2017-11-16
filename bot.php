@@ -26,9 +26,9 @@ try {
                          /stop - stop work with bot
                          /search - search posts by categories
                          /admin - site administrator panel
-                         <b>if you want get quote input random message</b>
+                         if you want get quote input random message
                         ";
-        $bot->sendMessage($message->getChat()->getId(), 'Command list:');
+        $bot->sendMessage($message->getChat()->getId(), $commandList);
     });
 
 
