@@ -9,7 +9,14 @@ try {
     });
 
     $bot->command('search', function ($message) use ($bot) {
-        $bot->sendMessage($message->getChat()->getId(), "Search by:" );
+        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
+            [
+                [
+                    ['text' => 'link', 'url' => 'https://core.telegram.org']
+                ]
+            ]
+        );
+        $bot->sendMessage($message->getChat()->getId(), "Search by:", null, false, null, $keyboard );
     });
     $bot->run();
 
