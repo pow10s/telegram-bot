@@ -31,7 +31,9 @@ try {
         $bot->sendMessage($message->getChat()->getId(), $commandList);
     });
 
-
+    $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
+        $bot->answerCallbackQuery($callbackQuery->getId(), 'test');
+    });
     $bot->run();
 
 } catch (\TelegramBot\Api\Exception $e) {
