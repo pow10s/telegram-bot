@@ -21,6 +21,13 @@ try {
     });
 
     $bot->command('help', function ($message) use ($bot) {
+        $commandList = "Command list:
+                        /start - start work with bot
+                         /stop - stop work with bot
+                         /search - search posts by categories
+                         /admin - site administrator panel
+                         <b>if you want get quote input random message</b>
+                        ";
         $bot->sendMessage($message->getChat()->getId(), 'Command list:');
     });
 
