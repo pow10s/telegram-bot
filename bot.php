@@ -32,6 +32,7 @@ try {
     });
 
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
+        $bot->editMessageText($callbackQuery->getId(), $callbackQuery->getChatInstance(), 'test');
         $bot->answerCallbackQuery($callbackQuery->getId(), 'test');
     });
     $bot->run();
