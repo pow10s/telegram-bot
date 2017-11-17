@@ -27,7 +27,9 @@ try {
     });
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
         if($callbackQuery->getData() == 'categories'){
-            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'SEX');
+            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Searching by categories');
+        }elseif($callbackQuery->getData() == 'searching by keyword'){
+            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Searching by keywords');
         }
     });
     $bot->run();
