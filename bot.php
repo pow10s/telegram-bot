@@ -23,9 +23,14 @@ try {
                 ]
             ], true, true
         );
-        $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
+        $bot->sendMessage($message->getChat()->getId(), 'Search by:', null, false, null, $keyboard);
     });
 
+    $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
+         if($inlineQuery->getQuery() == 'categories') {
+             $bot->answerInlineQuery($inlineQuery->getId(), 'some text');
+         }
+    });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
