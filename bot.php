@@ -1,6 +1,5 @@
 <?php
 require_once "vendor/autoload.php";
-echo '1';
 try {
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
     $bot->command('start', function ($message) use ($bot){
@@ -25,6 +24,11 @@ try {
             ]
         );
         $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
+    });
+    $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
+        if($callbackQuery->getData() == 'categories'){
+            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'SEX');
+        }
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
