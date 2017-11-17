@@ -38,9 +38,6 @@ try {
         $bot->sendMessage($message->getChat()->getId(), 'Hello, you are in admin panel!', null, false ,null, $keyboard);
 
     });
-    $bot->command('', function ($message) use ($bot){
-        $bot->sendMessage($message->getChat()->getId(), 'some quote');
-    });
 
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
         if($callbackQuery->getData() == 'categories'){
