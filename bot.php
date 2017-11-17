@@ -29,6 +29,7 @@ try {
 
     $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
         print_r($inlineQuery->getQuery()) ;
+        echo '1';
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
