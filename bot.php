@@ -28,7 +28,8 @@ try {
     });
 
     $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
-        echo($inlineQuery->getQuery()) ;
+        $result = 'hello';
+        $bot->answerInlineQuery($inlineQuery->getId(), $result, 0);
 
     });
     $bot->run();
