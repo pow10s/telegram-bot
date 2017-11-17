@@ -25,11 +25,27 @@ try {
         );
         $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
+    $bot->command('admin', function($message) use ($bot){
+        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
+            [
+                [
+                    ['text' => 'Login', 'callback_data' => 'login'],
+                ]
+            ]
+        );
+        $bot->sendMessage($message->getChat()->getId(), 'Hello, you are in admin panel!', null, false ,null, $keyboard);
+
+    });
+
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
         if($callbackQuery->getData() == 'categories'){
-            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Searching by categories');
+            /*WORDPRESS CODE...*/
+            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'List of categories:');
         }elseif($callbackQuery->getData() == 'keyword'){
+            /*WORDPRESS CODE...*/
             $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Searching by keywords');
+        }elseif ($callbackQuery->getData() == 'login'){
+            $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Login functionality');
         }
     });
     $bot->run();
