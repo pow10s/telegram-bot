@@ -1,5 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
+echo '1';
 try {
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
     $bot->command('start', function ($message) use ($bot){
@@ -15,21 +16,15 @@ try {
         $bot->sendMessage($message->getChat()->getId(), $commandList);
     });
     $bot->command('search', function ($message) use ($bot){
-        $keyboard = new \TelegramBot\Api\Types\ReplyKeyboardMarkup(
+        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
             [
                 [
                     ['text' => 'Categories', 'callback_data' => 'categories'],
                     ['text' => 'Keyword', 'callback_data' => 'keyword']
                 ]
-            ], true, true
+            ]
         );
-        $bot->sendMessage($message->getChat()->getId(), 'Search by:', null, false, null, $keyboard);
-    });
-
-    $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
-         if($inlineQuery->getQuery() == 'categories') {
-             $bot->answerInlineQuery($inlineQuery->getId(), 'some text');
-         }
+        $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
