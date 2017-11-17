@@ -24,11 +24,7 @@ try {
                 ]
             ]
         );
-        $bot->sendMessage($message->getChat()->getId(), 'Search by:',false, null, false, $keyboard);
-    });
-    $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
-        print_r($callbackQuery->getData());
-
+        $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
