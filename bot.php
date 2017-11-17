@@ -21,7 +21,7 @@ try {
                     ['text' => 'Categories', 'callback_data' => 'categories'],
                     ['text' => 'Keyword', 'callback_data' => 'keyword']
                 ]
-            ]
+            ], false, true
         );
         $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
