@@ -15,6 +15,17 @@ try {
                          if you want get quote input random message';
         $bot->sendMessage($message->getChat()->getId(), $commandList);
     });
+    $bot->command('search', function ($message) use ($bot){
+        $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
+            [
+                [
+                    ['text' => 'Categories', 'callback_data' => 'categories'],
+                    ['text' => 'Keyword', 'callback_data' => 'keyword']
+                ]
+            ]
+        );
+        $bot->sendMessage($message->getChat()->getId(), 'Search by:',false, null, false, $keyboard);
+    });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
