@@ -1,6 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
-
+echo '1';
 try {
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
     $bot->command('start', function ($message) use ($bot){
@@ -29,7 +29,7 @@ try {
 
     $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
         print_r($inlineQuery->getQuery()) ;
-        echo '1';
+
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
