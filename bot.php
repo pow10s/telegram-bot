@@ -26,6 +26,7 @@ try {
         $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
     $bot->command('admin', function($message) use ($bot){
+        /*Need verification if logged user*/
         $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup(
             [
                 [
@@ -33,8 +34,12 @@ try {
                 ]
             ]
         );
+        /*End verification if logged user*/
         $bot->sendMessage($message->getChat()->getId(), 'Hello, you are in admin panel!', null, false ,null, $keyboard);
 
+    });
+    $bot->command('', function ($message) use ($bot){
+        $bot->sendMessage($message->getChat()->getId(), 'some quote');
     });
 
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot){
@@ -45,6 +50,7 @@ try {
             /*WORDPRESS CODE...*/
             $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Searching by keywords');
         }elseif ($callbackQuery->getData() == 'login'){
+            /*WORDPRESS CODE...*/
             $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Login functionality');
         }
     });
