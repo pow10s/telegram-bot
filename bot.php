@@ -6,6 +6,15 @@ try {
     $bot->command('start', function ($message) use ($bot){
         $bot->sendMessage($message->getChat()->getId(), 'Hello,' .$message->getChat()->getFirstName().', thank`s for subscribing. Commands list: /help');
     });
+    $bot->command('help', function ($message) use ($bot){
+        $commandList = 'List of commands:
+                         /start - start work with bot
+                         /stop - stop work with bot
+                         /search - search posts by categories
+                         /admin - site administrator panel
+                         if you want get quote input random message';
+        $bot->sendMessage($message->getChat()->getId(), $commandList);
+    });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
