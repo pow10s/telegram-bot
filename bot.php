@@ -26,6 +26,10 @@ try {
         );
         $bot->sendMessage($message->getChat()->getId(), 'Search by:',null, false, null, $keyboard);
     });
+
+    $bot->inlineQuery(function (\TelegramBot\Api\Types\Inline\InlineQuery $inlineQuery) use ($bot){
+        print_r($inlineQuery->getQuery()) ;
+    });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
