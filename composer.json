@@ -5,8 +5,8 @@
     "dist": {
         "url": "git@github.com:stosdima/telegram-bot.git",
         "type": "git"
-    }
+    },
     "require": {
     "telegram-bot/api": "^2.3"
-}
+    }
 }
