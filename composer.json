@@ -1,0 +1,9 @@
+{
+    "name": "stosdima/telegram-bot",
+    "version": "master",
+    "type": "wordpress-plugin",
+    "dist": {
+        "url": "git@github.com:stosdima/telegram-bot.git",
+        "type": "git"
+    }
+}
