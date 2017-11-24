@@ -8,7 +8,7 @@ try {
             str_replace("<br/>", "\n", json_decode('"' . $result[1][0] . '"')));
     });
     $bot->command('qaanswer', function ($message) use ($bot) {
-        $bot->sendMessage($message->getChat()->getId(), file_get_contents('http://qaanswers.ru/qwe.php'));
+        $bot->sendMessage($message->getChat()->getId(), file_get_contents('php://input'));
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
