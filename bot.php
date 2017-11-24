@@ -2,6 +2,7 @@
 require_once "vendor/autoload.php";
 try {
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
+    print_r(json_encode($bot->getRawBody()));
     $bot->command('start', function ($message) use ($bot) {
         $bot->sendMessage($message->getChat()->getId(),
             'Hello,' . $message->getChat()->getFirstName() . ', thank`s for subscribing. Commands list: /help');
@@ -41,8 +42,6 @@ try {
         $bot->sendMessage($message->getChat()->getId(), 'Hello, you are in admin panel!', null, false, null, $keyboard);
 
     });
-    $data = json_decode(file_get_contents('php://input'));
-    print_r($data);
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot) {
         if ($callbackQuery->getData() == 'categories') {
             /*WORDPRESS CODE...*/
