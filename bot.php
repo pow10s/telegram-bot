@@ -8,9 +8,12 @@ try {
             str_replace("<br/>", "\n", json_decode('"' . $result[1][0] . '"')));
     });
     $bot->command('qaanswer', function ($message) use ($bot) {
-        $data = json_decode(file_get_contents('php://input'));
-        $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
+        $bot->sendMessage($message->getChat()->getId(),  'test');
     });
+    $data = json_decode(file_get_contents('php://input'));
+    if($data->{'message'}->{'text'} == 'test'){
+        $bot->sendMessage($bot->getChat()->getId(), 'test');
+    }
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
