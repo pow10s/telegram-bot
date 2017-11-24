@@ -10,10 +10,6 @@ try {
     $bot->command('qaanswer', function ($message) use ($bot) {
         $bot->sendMessage($message->getChat()->getId(),  'test');
     });
-    $data = json_decode(file_get_contents('php://input'));
-    if($data->{'message'}->{'text'} == 'test'){
-        $bot->sendMessage($bot->getChat()->getId(), 'test');
-    }
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
