@@ -59,7 +59,7 @@ try {
             $bot->sendMessage($callbackQuery->getFrom()->getId(), 'Post deleted');
         }
     });
-    print_r($bot->run());
+    $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
 }
