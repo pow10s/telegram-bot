@@ -1,10 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
 try {
-            $bot1 = new TelegramBot\Api\BotApi('dsadsa');
-        foreach ($bot1->getUpdates() as $data){
-            print_r($data->getMessage()->getText());
-        }
     $bot = new \TelegramBot\Api\Client('438332110:AAFCgeVIz_vq6HJznmLqbvTcxbZ0v4lCEzY');
     $bot->command('start', function ($message) use ($bot) {
         $bot->sendMessage($message->getChat()->getId(),
