@@ -8,8 +8,8 @@ try {
             str_replace("<br/>", "\n", json_decode('"' . $result[1][0] . '"')));
     });
     $bot->command('qaanswer', function ($message) use ($bot) {
-        $data = json_encode(file_get_contents('php://input'));
-        $bot->sendMessage($message->getChat()->getId(), $data['message']['text']);
+        $data = json_decode(file_get_contents('php://input'));
+        $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
     });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
