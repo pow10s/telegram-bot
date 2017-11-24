@@ -41,7 +41,6 @@ try {
         $bot->sendMessage($message->getChat()->getId(), 'Hello, you are in admin panel!', null, false, null, $keyboard);
 
     });
-    print_r(json_encode($bot->getRawBody()));
     $bot->callbackQuery(function (\TelegramBot\Api\Types\CallbackQuery $callbackQuery) use ($bot) {
         if ($callbackQuery->getData() == 'categories') {
             /*WORDPRESS CODE...*/
