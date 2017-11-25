@@ -12,7 +12,7 @@ try {
         $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
     });
                 $bot->on(function ($update) use ($bot){
-                if ($update->getMessage()->getText == 'hi'){
+                if ($update->getMessage()->getText() == 'hi'){
                     $bot->sendMessage($update->getChat()->getId(), 'hello');
                 }
             });
