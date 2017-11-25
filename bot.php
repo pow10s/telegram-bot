@@ -15,9 +15,7 @@ try {
         if($update->getMessage()->getText() == 'hi'){
             $bot->sendMessage($update->getChat()->getId(), "hello!");
         }
-    }, function ($update) use ($bot){
-        return true;
-    });
+    }, null);
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
