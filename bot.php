@@ -11,17 +11,13 @@ try {
         $data = json_decode(file_get_contents('php://input'));
         $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
     });
-            $bot->on(function($Update) use ($bot){
-                $message = $Update->getMessage();
-                $mtext = $message->getText();
-                $cid = $message->getChat()->getId();
-
-                if(mb_stripos($mtext,"hi") !== false){
-                    $bot->sendMessage($message->getChat()->getId(), "hello!");
-                }
-            }, function($message) use ($bot){
-                return true; // когда тут true - команда проходит
-            });
+    $bot->on(function ($update) use ($bot){
+        if($update->getMessage()->getText() == 'hi'){
+            $bot->sendMessage($update->getChat()->getId(), "hello!");
+        }
+    }, function ($update) use ($bot){
+        return true;
+    });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
