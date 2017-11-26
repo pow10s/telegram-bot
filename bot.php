@@ -11,15 +11,14 @@ try {
         $data = json_decode(file_get_contents('php://input'));
         $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
     });
-$bot->on(function(\TelegramBot\Api\Types\Message $message) use ($bot)
-{
-$chat = $message->getChat();
-$text = $message->getText();
-
-$output = "you said $text";
-
-$bot->sendMessage($chat->getId(), $output);
-});
+                $bot->on(function(\TelegramBot\Api\Types\Message $message) use ($bot)
+            {
+                $chat = $message->getChat();
+                $text = $message->getText();
+                if($text == 'hi'){
+                    $bot->sendMessage($chat->getId(), 'hello');
+                }
+            });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
     $e->getMessage();
