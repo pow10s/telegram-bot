@@ -12,8 +12,10 @@ try {
         $bot->sendMessage($message->getChat()->getId(),  $data->{'message'}->{'text'});
     });
                 $bot->on(function ($update) use ($bot){
-                if($update->getMessage()->getText() == 'hi')
-                $bot->sendMessage('75586930', 'test');
+                $data = json_decode(file_get_contents('php://input'));
+                if($data->{'message'}->{'text'} == 'test'){
+                    $bot->sendMessage($update->getChat()->getId(), 'some text');
+                }
             });
     $bot->run();
 } catch (\TelegramBot\Api\Exception $e) {
